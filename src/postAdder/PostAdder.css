@@ -1,0 +1,28 @@
+.post-adder h3 {
+    text-align: center;
+    
+}
+
+.post-adder-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center; 
+}
+
+.post-adder-title {
+    display: block;
+    width: 80%
+    
+}
+
+.post-adder-body {
+    display: block;
+    width: 80%;
+    height: 50px;
+}
+
+.post-adder-wrapper button {
+    /* margin-top: 15px; */
+}
