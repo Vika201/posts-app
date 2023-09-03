@@ -3,14 +3,20 @@ import PostListItem from '../postListItem/postListItem';
 
 import './PostList.css';
 
-function PostList({ posts, filteredPosts, setFilteredPosts, filterText, handleRemove }) {
+function PostList({ posts, 
+                    filteredPosts, 
+                    setFilteredPosts, 
+                    filterText, 
+                    handleRemove, 
+                    openEditModal }) {
 
     const postList = (arr) => {
         return arr.map(post => (
             <li key={post.id} className='wrapper'>
                <PostListItem 
                     post={post}
-                    handleRemove={handleRemove}/>
+                    handleRemove={handleRemove}
+                    openEditModal={openEditModal}/>
             </li>
             
         ))}
