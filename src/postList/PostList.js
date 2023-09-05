@@ -3,26 +3,38 @@ import PostListItem from '../postListItem/postListItem';
 
 import './PostList.css';
 
-function PostList({ posts, 
+function PostList({ posts,
+                    setPost, 
                     filteredPosts, 
                     setFilteredPosts, 
                     filterText, 
-                    handleRemove, 
-                    openEditModal }) {
+                    handleRemove,
+                    handleSave, 
+                    openEditModal,
+                    isEditing,
+                    setIsEditing }) {
 
     const postList = (arr) => {
         return arr.map(post => (
             <li key={post.id} className='wrapper'>
                <PostListItem 
                     post={post}
+                    isEditing={isEditing}
                     handleRemove={handleRemove}
-                    openEditModal={openEditModal}/>
+                    handleSave={handleSave}
+                    openEditModal={openEditModal}
+                    
+                    setIsEditing={setIsEditing} 
+                    setPost={setPost} 
+                    />
+                    
             </li>
             
         ))}
 
     useEffect(() => {
-        const filtered = posts.filter(post => (post.body.toLowerCase().includes(filterText.toLowerCase()) || (post.title.toLowerCase().includes(filterText.toLowerCase()))
+        const filtered = posts.filter(post => (
+            post.body.toLowerCase().includes(filterText.toLowerCase()) || (post.title.toLowerCase().includes(filterText.toLowerCase()))
         ))
         setFilteredPosts(filtered);
     }, [posts, filterText, setFilteredPosts])

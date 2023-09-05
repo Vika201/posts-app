@@ -1,10 +1,14 @@
 import { useState } from 'react';
 
-function EditModal({ setIsEditing, 
+import './editModal.css';
+
+function EditModal({ isEditing,
+                    setIsEditing, 
                     post, 
                     setPost,
-                    handleSave }) {
-                        
+                    handleSave,
+                    openEditModal }) {
+
     const [editTitle, setEditTitle] = useState(post.title);
     const [editBody, setEditBody] = useState(post.body);
 
@@ -18,34 +22,53 @@ function EditModal({ setIsEditing,
 
     const handleSubmit = (e) => {
         e.preventDefault(); // щоб форма відпрацьовувала належним чином
-        handleSave(post.id, editTitle, editBody);
-        const updatedPost = { ...post, title: editTitle, body: editBody};
+        const updatedPost = handleSave(post.id, editTitle, editBody);
+        // const updatedPost = {...post, title: editTitle, body: editBody};
         setPost(updatedPost);
-        setIsEditing(false);
+        openEditModal(null);
+        console.log('handleSubmit:', post)
         
     }
 
     const handleCancel = () => {
-        setIsEditing(false);
+        openEditModal(null);
+        console.log('cancel', isEditing)
     }
 
     
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h3>Edit post</h3>
-            <textarea value={editTitle}
-                        onChange={handleEditTitle}/>
-            <textarea value={editBody}
-                        onChange={handleEditBody}/>
-            <div>
-                <button type='submit'>Save</button>
-                <button onClick={handleCancel}>
-                    Cancel</button>
-            </div>
-      </form>
+    
+        <div>
+            {isEditing && (
+                <div className='modal'>
+                    <div className='modal-content'>
+                        <span className='close' 
+                                onClick={handleCancel}>&times;</span>
+                        <input value={editTitle}
+                                onChange={handleEditTitle} />
+                        <input value={editBody}
+                                onChange={handleEditBody} />
+                        <button onClick={handleSubmit}>Save</button>
+                    </div>
+                </div>
+                )
+            }
+        </div>
     )
 }
 
 export default EditModal;
 
+//     <form onSubmit={handleSubmit}>
+    //         <h3>Edit post</h3>
+    //         <textarea value={editTitle}
+    //                     onChange={handleEditTitle}/>
+    //         <textarea value={editBody}
+    //                     onChange={handleEditBody}/>
+    //         <div>
+    //             <button type='submit'>Save</button>
+    //             <button onClick={handleCancel}>
+    //                 Cancel</button>
+    //         </div>
+    //   </form>

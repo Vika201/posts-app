@@ -11,7 +11,7 @@ function App() {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [filterText, setFilterText] = useState('');
 // edit posts
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(null);
   const [post, setPost] = useState({});  
 
 
@@ -43,14 +43,19 @@ function App() {
     const updatePosts = posts.filter(post => post.id !== id);
     setPosts(updatePosts);
     setFilteredPosts(updatePosts);
+    console.log('delete:', id)
 }
 
 // edit posts
      
 const openEditModal = (id) => {
   const postFinded = posts.find(post => post.id === id)
-  setIsEditing(true);
-  setPost(postFinded);
+  debugger;
+  setIsEditing(id);
+  console.log('postFinded:', postFinded);
+  // setPost(postFinded);
+  console.log('isEditing2:', isEditing);
+  console.log('post:', id);
 }
 
 const handleSave = (postId, newTitle, newBody) => {
@@ -70,7 +75,6 @@ const handleSave = (postId, newTitle, newBody) => {
   }
 }
 
-console.log('post:', post)
   return (
     <div className='app'>
      <PostAdder create={createPost}/>
@@ -78,21 +82,28 @@ console.log('post:', post)
             placeholder='Search'
             value={filterText}
             onChange={e => setFilterText(e.target.value)}/>
-      {isEditing ? <EditModal isEditing={isEditing}
+
+      {/* {isEditing ? <EditModal 
+                  isEditing={isEditing}
                   setIsEditing={setIsEditing} 
                   post={post} 
                   setPost={setPost}
-                  handleSave={handleSave} /> : (
-        <PostList posts={posts}
-                filteredPosts={filteredPosts}
-                setFilteredPosts={setFilteredPosts}
-                handleRemove={handleRemove}
-                filterText={filterText}
-                openEditModal={openEditModal}
-                />
-      )}
-     
-     
+                  handleSave={handleSave} /> 
+      } */}
+      
+      <PostList posts={posts}
+              filteredPosts={filteredPosts}
+              setFilteredPosts={setFilteredPosts}
+              handleRemove={handleRemove}
+              filterText={filterText}
+              openEditModal={openEditModal}
+              isEditing={isEditing}
+
+              setIsEditing={setIsEditing}
+              post={post} 
+              setPost={setPost}
+              handleSave={handleSave} 
+              />
     </div> 
   );
 }
