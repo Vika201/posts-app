@@ -3,14 +3,11 @@ import { useState } from 'react';
 import './editModal.css';
 
 function EditModal({ isEditing,
-                    setIsEditing, 
-                    post, 
-                    setPost,
-                    handleSave,
-                    openEditModal }) {
+                    setIsEditing,
+                    handleSave }) {
 
-    const [editTitle, setEditTitle] = useState(post.title);
-    const [editBody, setEditBody] = useState(post.body);
+    const [editTitle, setEditTitle] = useState(isEditing.title);
+    const [editBody, setEditBody] = useState(isEditing.body);
 
     const handleEditTitle = (e) => {
         setEditTitle(e.target.value);
@@ -22,17 +19,13 @@ function EditModal({ isEditing,
 
     const handleSubmit = (e) => {
         e.preventDefault(); // щоб форма відпрацьовувала належним чином
-        const updatedPost = handleSave(post.id, editTitle, editBody);
-        // const updatedPost = {...post, title: editTitle, body: editBody};
-        setPost(updatedPost);
-        openEditModal(null);
-        console.log('handleSubmit:', post)
+        handleSave(isEditing.id, editTitle, editBody);
+        setIsEditing(null);
         
     }
 
     const handleCancel = () => {
-        openEditModal(null);
-        console.log('cancel', isEditing)
+        setIsEditing(null)
     }
 
     
@@ -59,16 +52,3 @@ function EditModal({ isEditing,
 }
 
 export default EditModal;
-
-//     <form onSubmit={handleSubmit}>
-    //         <h3>Edit post</h3>
-    //         <textarea value={editTitle}
-    //                     onChange={handleEditTitle}/>
-    //         <textarea value={editBody}
-    //                     onChange={handleEditBody}/>
-    //         <div>
-    //             <button type='submit'>Save</button>
-    //             <button onClick={handleCancel}>
-    //                 Cancel</button>
-    //         </div>
-    //   </form>

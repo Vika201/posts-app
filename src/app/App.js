@@ -12,7 +12,6 @@ function App() {
   const [filterText, setFilterText] = useState('');
 // edit posts
   const [isEditing, setIsEditing] = useState(null);
-  const [post, setPost] = useState({});  
 
 
 
@@ -50,12 +49,7 @@ function App() {
      
 const openEditModal = (id) => {
   const postFinded = posts.find(post => post.id === id)
-  debugger;
-  setIsEditing(id);
-  console.log('postFinded:', postFinded);
-  // setPost(postFinded);
-  console.log('isEditing2:', isEditing);
-  console.log('post:', id);
+  setIsEditing(postFinded);
 }
 
 const handleSave = (postId, newTitle, newBody) => {
@@ -75,6 +69,8 @@ const handleSave = (postId, newTitle, newBody) => {
   }
 }
 
+
+
   return (
     <div className='app'>
      <PostAdder create={createPost}/>
@@ -83,13 +79,12 @@ const handleSave = (postId, newTitle, newBody) => {
             value={filterText}
             onChange={e => setFilterText(e.target.value)}/>
 
-      {/* {isEditing ? <EditModal 
+      {(isEditing !== null) && <EditModal 
                   isEditing={isEditing}
-                  setIsEditing={setIsEditing} 
-                  post={post} 
-                  setPost={setPost}
-                  handleSave={handleSave} /> 
-      } */}
+                  setIsEditing={setIsEditing}
+                  handleSave={handleSave}
+                  openEditModal={openEditModal} /> 
+}
       
       <PostList posts={posts}
               filteredPosts={filteredPosts}
@@ -98,11 +93,6 @@ const handleSave = (postId, newTitle, newBody) => {
               filterText={filterText}
               openEditModal={openEditModal}
               isEditing={isEditing}
-
-              setIsEditing={setIsEditing}
-              post={post} 
-              setPost={setPost}
-              handleSave={handleSave} 
               />
     </div> 
   );
