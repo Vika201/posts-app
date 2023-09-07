@@ -14,6 +14,11 @@ function EditModal({ handleSave }) {
     const [editTitle, setEditTitle] = useState(editingPost.title);
     const [editBody, setEditBody] = useState(editingPost.body);
 
+    // const handleSave = (postId, newTitle, newBody) => {
+    //     dispatch(saveEditPostAction(postId, newTitle, newBody));
+    //   }
+    // }
+
     const handleEditTitle = (e) => {
         setEditTitle(e.target.value);
     }
