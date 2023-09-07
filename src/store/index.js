@@ -20,13 +20,22 @@ const reducer = (state = defaultState, action) => {
     switch (action.type) {
         case SET_POSTS:
             return {...state, posts: action.payload};
-        // видалення
+        case SET_FILTERED_POSTS:
+            return {...state, filteredPosts: action.payload};
+        case SET_FILTERED_TEXT:
+            return {...state, filterText: action.payload};
+        case SET_EDITING_POST: {
+            return {...state, editingPost: action.payload}
+        }
+            // видалення
             default: 
             return state;
     }
 }
 
-export const setPostsAction = (payload) => ({ type: SET_POSTS, payload});
-const setFilteredPosts = (payload) => {} 
+export const setPostsAction = (payload) => ({type: SET_POSTS, payload});
+export const setFilteredPostsAction = (payload) => ({type: SET_FILTERED_POSTS, payload}); 
+const setFilteredTextAction = (payload) => ({type: SET_FILTERED_TEXT, payload}); 
+const setEditingPostAction = (payload) => ({type: SET_EDITING_POST, payload}); 
 
 export const store = createStore(reducer);

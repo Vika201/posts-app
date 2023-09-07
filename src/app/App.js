@@ -8,12 +8,14 @@ import EditModal from '../editModal/editModal';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import { setPostsAction } from '../store';
+import { setPostsAction, setFilteredPostsAction } from '../store';
 
 function App() {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.posts);
-  const [filteredPosts, setFilteredPosts] = useState([]);
+  const filteredPosts = useSelector(state => state.filteredPosts);
+
+  // const [filteredPosts, setFilteredPosts] = useState([]);
   const [filterText, setFilterText] = useState('');
 // edit posts
   const [isEditing, setIsEditing] = useState(null);
@@ -25,7 +27,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
           sorterPosts(data);
-          setFilteredPosts(data);
+          dispatch(setFilteredPostsAction(data));
         }
         
           )
@@ -47,7 +49,7 @@ function App() {
     // dispatch(deletePostAction(id))
     const updatePosts = posts.filter(post => post.id !== id);
     dispatch(setPostsAction(updatePosts));
-    setFilteredPosts(updatePosts);
+    dispatch(setFilteredPostsAction(updatePosts));
     console.log('delete:', id)
 }
 
@@ -95,7 +97,7 @@ const handleSave = (postId, newTitle, newBody) => {
       <PostList 
               posts={posts}
               filteredPosts={filteredPosts}
-              setFilteredPosts={setFilteredPosts}
+              // setFilteredPosts={setFilteredPosts}
               handleRemove={handleRemove}
               filterText={filterText}
               openEditModal={openEditModal}
