@@ -8,17 +8,19 @@ import EditModal from '../editModal/editModal';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import { setPostsAction, setFilteredPostsAction } from '../store';
+import { setPostsAction, setFilteredPostsAction, setFilterTextAction, setEditingPostAction } from '../store';
 
 function App() {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.posts);
   const filteredPosts = useSelector(state => state.filteredPosts);
+  const filterText = useSelector(state => state.filterText);
+  const editingPost = useSelector(state => state.editingPost);
 
   // const [filteredPosts, setFilteredPosts] = useState([]);
-  const [filterText, setFilterText] = useState('');
+  // const [filterText, setFilterText] = useState('');
 // edit posts
-  const [isEditing, setIsEditing] = useState(null);
+  // const [isEditing, setIsEditing] = useState(null);
 
 
 
@@ -57,7 +59,7 @@ function App() {
      
 const openEditModal = (id) => {
   const postFinded = posts.find(post => post.id === id)
-  setIsEditing(postFinded);
+  dispatch(setEditingPostAction(postFinded));
 }
 
 const handleSave = (postId, newTitle, newBody) => {
@@ -77,6 +79,10 @@ const handleSave = (postId, newTitle, newBody) => {
   }
 }
 
+const searchingText = (e) => {
+  dispatch(setFilterTextAction(e.target.value));
+}
+
 
 
   return (
@@ -85,11 +91,11 @@ const handleSave = (postId, newTitle, newBody) => {
      <input type='text'
             placeholder='Search'
             value={filterText}
-            onChange={e => setFilterText(e.target.value)}/>
+            onChange={searchingText}/>
 
-      {(isEditing !== null) && <EditModal 
-                  isEditing={isEditing}
-                  setIsEditing={setIsEditing}
+      {(editingPost !== null) && <EditModal 
+                  editingPost={editingPost}
+                  // setIsEditing={setIsEditing}
                   handleSave={handleSave}
                   openEditModal={openEditModal} /> 
 }
@@ -101,7 +107,7 @@ const handleSave = (postId, newTitle, newBody) => {
               handleRemove={handleRemove}
               filterText={filterText}
               openEditModal={openEditModal}
-              isEditing={isEditing}
+              editingPost={editingPost}
               />
     </div> 
   );

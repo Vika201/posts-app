@@ -9,7 +9,7 @@ const defaultState = {
 
 const SET_POSTS = '[Admin] Set Posts';
 const SET_FILTERED_POSTS = '[Admin] Set Filtered Posts';
-const SET_FILTERED_TEXT = '[Admin] Set Filtered Text';
+const SET_FILTER_TEXT = '[Admin] Set Filter Text';
 const SET_EDITING_POST = '[Admin] Set Editing Post';
 // видалення
 // створення
@@ -22,7 +22,7 @@ const reducer = (state = defaultState, action) => {
             return {...state, posts: action.payload};
         case SET_FILTERED_POSTS:
             return {...state, filteredPosts: action.payload};
-        case SET_FILTERED_TEXT:
+        case SET_FILTER_TEXT:
             return {...state, filterText: action.payload};
         case SET_EDITING_POST: {
             return {...state, editingPost: action.payload}
@@ -35,7 +35,7 @@ const reducer = (state = defaultState, action) => {
 
 export const setPostsAction = (payload) => ({type: SET_POSTS, payload});
 export const setFilteredPostsAction = (payload) => ({type: SET_FILTERED_POSTS, payload}); 
-const setFilteredTextAction = (payload) => ({type: SET_FILTERED_TEXT, payload}); 
-const setEditingPostAction = (payload) => ({type: SET_EDITING_POST, payload}); 
+export const setFilterTextAction = (payload) => ({type: SET_FILTER_TEXT, payload}); 
+export const setEditingPostAction = (payload) => ({type: SET_EDITING_POST, payload}); 
 
 export const store = createStore(reducer);
