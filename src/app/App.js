@@ -5,9 +5,14 @@ import './App.css';
 import PostList from '../postList/PostList';
 import PostAdder from '../postAdder';
 import EditModal from '../editModal/editModal';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+
+import { setPostsAction } from '../store';
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
+  const posts = useSelector(state => state.posts);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [filterText, setFilterText] = useState('');
 // edit posts
@@ -29,18 +34,19 @@ function App() {
 
   const sorterPosts = (arr) => {
     const sortPosts = arr.sort((a, b) => a.title.localeCompare(b.title));
-        setPosts(sortPosts)
+    dispatch(setPostsAction(sortPosts))
   }
 
   const createPost = (newPost) => {
     const updatePosts = [...posts, newPost];
     sorterPosts(updatePosts);
-    setPosts(updatePosts);
+    dispatch(setPostsAction(updatePosts));
   }
 
   const handleRemove = (id) => {
+    // dispatch(deletePostAction(id))
     const updatePosts = posts.filter(post => post.id !== id);
-    setPosts(updatePosts);
+    dispatch(setPostsAction(updatePosts));
     setFilteredPosts(updatePosts);
     console.log('delete:', id)
 }
@@ -65,7 +71,7 @@ const handleSave = (postId, newTitle, newBody) => {
     const updatedPosts = [...posts];
     updatedPosts[postIndex] = updatedPost;
 
-    setPosts(updatedPosts);
+    dispatch(setPostsAction(updatedPosts));
   }
 }
 
@@ -86,7 +92,8 @@ const handleSave = (postId, newTitle, newBody) => {
                   openEditModal={openEditModal} /> 
 }
       
-      <PostList posts={posts}
+      <PostList 
+              posts={posts}
               filteredPosts={filteredPosts}
               setFilteredPosts={setFilteredPosts}
               handleRemove={handleRemove}

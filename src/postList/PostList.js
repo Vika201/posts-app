@@ -28,7 +28,7 @@ function PostList({ posts,
             post.body.toLowerCase().includes(filterText.toLowerCase()) || (post.title.toLowerCase().includes(filterText.toLowerCase()))
         ))
         setFilteredPosts(filtered);
-    }, [posts, filterText, setFilteredPosts])
+    }, [posts, filterText])
 
     return (
         <div>
