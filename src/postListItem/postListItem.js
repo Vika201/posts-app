@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import EditModal from '../editModal/editModal';
 import deleteItem from '../img/delete2.png';
 import { deletePostAction, openEditModalAction } from '../store';
 

@@ -33,9 +33,7 @@ function App() {
   }, []);
 
 
-  const createPost = (newPost) => {
-    dispatch(createPostAction(newPost));
-  }
+  
 
   
 
@@ -45,7 +43,7 @@ function App() {
 
   return (
     <div className='app'>
-      <PostAdder create={createPost}/>
+      <PostAdder/>
       <FilteringPosts />
 
       {(editingPost !== null) && <EditModal />}

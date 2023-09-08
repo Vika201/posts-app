@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createPostAction } from '../store';
 
 import './PostAdder.css';
 
-function PostAdder({ create }) {
+function PostAdder() {
+    const dispatch = useDispatch();
+
     const [post, setPost] = useState({
         title: '',
         body: ''
     })
+
+    const createPost = (newPost) => {
+        dispatch(createPostAction(newPost));
+      }
 
     const addNewPost = (e) => {
         e.preventDefault();
@@ -15,7 +23,7 @@ function PostAdder({ create }) {
             userId: 10,
             id: Date.now()
         }
-        create(newPost);
+        createPost(newPost);
         setPost({title: '', body: ''})
 
     }
