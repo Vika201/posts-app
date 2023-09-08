@@ -1,26 +1,20 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setEditingPostAction } from '../store';
+import { saveEditedBodyInPostAction, saveEditedTitleInPostAction, saveEditPostAction, setEditingPostAction } from '../store';
 
 import './editModal.css';
 
-function EditModal({ handleSave }) {
+function EditModal() {
 
     const dispatch = useDispatch();
     const editingPost = useSelector(state => state.editingPost);
 
-
     const [editTitle, setEditTitle] = useState(editingPost.title);
     const [editBody, setEditBody] = useState(editingPost.body);
 
-    // const handleSave = (postId, newTitle, newBody) => {
-    //     dispatch(saveEditPostAction(postId, newTitle, newBody));
-    //   }
-    // }
-
     const handleEditTitle = (e) => {
-        setEditTitle(e.target.value);
+       setEditTitle(e.target.value);
     }
 
     const handleEditBody = (e) => {
@@ -29,7 +23,8 @@ function EditModal({ handleSave }) {
 
     const handleSubmit = (e) => {
         e.preventDefault(); // щоб форма відпрацьовувала належним чином
-        handleSave(editingPost.id, editTitle, editBody);
+        dispatch(saveEditedTitleInPostAction(editingPost.id, editTitle));
+        dispatch(saveEditedBodyInPostAction(editingPost.id, editBody));
         dispatch(setEditingPostAction(null));
         
     }

@@ -16,6 +16,9 @@ const SET_EDITING_POST = '[Admin] Set Editing Post';
 const REMOVE_POST = '[Admin] Remove Post';
 const CREATE_POST = '[Admin] Create Post';
 const OPEN_EDIT_MODAL = '[Admin] Open Edit Modal';
+
+const SAVE_EDITED_TITLE_IN_POST = '[Admin] Save Edited Title in Post';
+const SAVE_EDITED_BODY_IN_POST = '[Admin] Save Edited Body in Post';
 // const SAVE_EDITED_POST = '[Admin] Save Edited Post';
 // видалення
 // створення
@@ -29,7 +32,6 @@ const reducer = (state = defaultState, action) => {
                 // filteredPosts: setFilteredPosts(action.payload, state.filterText)
             };
         case SET_FILTERED_POSTS:
-            debugger;
             return {...state, filteredPosts: action.payload};
         case SET_FILTER_TEXT:
             return {...state, filterText: action.payload};
@@ -58,23 +60,36 @@ const reducer = (state = defaultState, action) => {
                 editingPost: postFinded
             }
         }
-        // case SAVE_EDITED_POST: {
-        //     const postIndex = state.posts.findIndex(post => post.id === action.payload);
-        //     if(postIndex !== -1){
-        //         const updatedPost = {
-        //             ...state.posts[postIndex],
-        //             title: newTitle,
-        //             body: newBody
-        //         };
-        //     const updatedPosts = [...state.posts];
-        //     updatedPosts[postIndex] = updatedPost;
-            
-        //     return {
-        //         ...state,
-        //         posts: updatedPosts
-        //     }
-            // }
-        // }
+        case SAVE_EDITED_TITLE_IN_POST: {
+            const postIndex = state.posts.findIndex(post => post.id === action.payload.id);
+            if(postIndex !== -1){
+                const updatedPost = {
+                    ...state.posts[postIndex],
+                    title: action.payload.title
+                };
+            const updatedPosts = [...state.posts];
+            updatedPosts[postIndex] = updatedPost;
+            return {
+                        ...state,
+                        posts: updatedPosts
+                    }
+        }
+    }
+        case SAVE_EDITED_BODY_IN_POST: {
+            const postIndex = state.posts.findIndex(post => post.id === action.payload.id);
+            if(postIndex !== -1){
+                const updatedPost = {
+                    ...state.posts[postIndex],
+                    body: action.payload.body
+                };
+            const updatedPosts = [...state.posts];
+            updatedPosts[postIndex] = updatedPost;
+            return {
+                        ...state,
+                        posts: updatedPosts
+                    }
+        }
+        }
             // видалення
             default: 
             return state;
@@ -90,6 +105,9 @@ export const setEditingPostAction = (payload) => ({type: SET_EDITING_POST, paylo
 export const deletePostAction = (payload) => ({type: REMOVE_POST, payload});
 export const createPostAction = (payload) => ({type: CREATE_POST, payload});
 export const openEditModalAction = (payload) => ({type: OPEN_EDIT_MODAL, payload});
-// export const saveEditPostAction = (payload) => ({type: SAVE_EDITED_POST, payload});
+
+export const saveEditedTitleInPostAction = (id, title) => ({type: SAVE_EDITED_TITLE_IN_POST, payload: {id, title}});
+export const saveEditedBodyInPostAction = (id, body) => ({type: SAVE_EDITED_BODY_IN_POST, payload: {id, body}});
 
 export const store = createStore(reducer, composeWithDevTools());
+

@@ -22,7 +22,6 @@ function App() {
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(data => {
-          // sorterPosts(data);
           
           dispatch(setPostsAction(data));
           // dispatch(setFilteredPostsAction(data));
@@ -32,18 +31,12 @@ function App() {
       .catch(error => console.error('Error fetch data:', error))
   }, []);
 
-  // const sorterPosts = (arr) => {
-  //   const sortPosts = arr.sort((a, b) => a.title.localeCompare(b.title));
-  //   dispatch(setPostsAction(sortPosts))
-  // }
 
   const createPost = (newPost) => {
     dispatch(createPostAction(newPost));
-    // sorterPosts(updatePosts);
   }
 
   const handleRemove = (id) => {
-    // dispatch(deletePostAction(id))
     dispatch(deletePostAction(id));
     console.log('delete:', id)
 }
@@ -52,23 +45,6 @@ function App() {
      
 const openEditModal = (id) => {
   dispatch(openEditModalAction(id));
-}
-
-const handleSave = (postId, newTitle, newBody) => {
-  const postIndex = posts.findIndex(post => post.id === postId);
-
-  if(postIndex !== -1) {
-    const updatedPost = {
-      ...posts[postIndex],
-      title: newTitle,
-      body: newBody,
-    };
-
-    const updatedPosts = [...posts];
-    updatedPosts[postIndex] = updatedPost;
-
-    dispatch(setPostsAction(updatedPosts));
-  }
 }
 
 const searchingText = (e) => {
@@ -86,7 +62,6 @@ const searchingText = (e) => {
             onChange={searchingText}/>
 
       {(editingPost !== null) && <EditModal 
-                  handleSave={handleSave}
                   openEditModal={openEditModal} /> 
 }
       
