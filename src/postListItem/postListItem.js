@@ -1,12 +1,21 @@
+import { useDispatch } from 'react-redux';
 import EditModal from '../editModal/editModal';
 import deleteItem from '../img/delete2.png';
+import { deletePostAction, openEditModalAction } from '../store';
 
 import './postListItem.css';
 
-function PostListItem({ post, 
-                        handleRemove,
-                        openEditModal
-                         }) {
+function PostListItem({ post }) {
+
+    const dispatch = useDispatch();
+    
+    const openEditModal = (id) => {
+        dispatch(openEditModalAction(id));
+        }
+
+        const handleRemove = (id) => {
+            dispatch(deletePostAction(id));
+        }
 
     return (
         <div>

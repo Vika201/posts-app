@@ -37,21 +37,10 @@ function App() {
     dispatch(createPostAction(newPost));
   }
 
-  const handleRemove = (id) => {
-    dispatch(deletePostAction(id));
-    console.log('delete:', id)
-}
+  
 
 // edit posts
      
-const openEditModal = (id) => {
-  dispatch(openEditModalAction(id));
-}
-
-const searchingText = (e) => {
-  dispatch(setFilterTextAction(e.target.value));
-}
-
 
 
   return (
@@ -59,17 +48,13 @@ const searchingText = (e) => {
       <PostAdder create={createPost}/>
       <FilteringPosts />
 
-      {(editingPost !== null) && <EditModal 
-                  openEditModal={openEditModal} /> 
-}
+      {(editingPost !== null) && <EditModal />}
       
       <PostList 
               posts={posts}
               filteredPosts={filteredPosts}
               // setFilteredPosts={setFilteredPosts}
-              handleRemove={handleRemove}
               filterText={filterText}
-              openEditModal={openEditModal}
               editingPost={editingPost}
               />
     </div> 

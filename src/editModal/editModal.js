@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { saveEditedBodyInPostAction, saveEditedTitleInPostAction, saveEditPostAction, setEditingPostAction } from '../store';
+import { saveEditedBodyInPostAction, saveEditedTitleInPostAction, setEditingPostAction } from '../store';
 
 import './editModal.css';
 
@@ -12,6 +12,8 @@ function EditModal() {
 
     const [editTitle, setEditTitle] = useState(editingPost.title);
     const [editBody, setEditBody] = useState(editingPost.body);
+
+    
 
     const handleEditTitle = (e) => {
        setEditTitle(e.target.value);

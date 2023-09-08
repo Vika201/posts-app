@@ -9,9 +9,7 @@ import './PostList.css';
 function PostList({ posts,
                     // filteredPosts, 
                     // setFilteredPosts, 
-                    filterText, 
-                    handleRemove,
-                    openEditModal }) {
+                    filterText }) {
 
     const dispatch = useDispatch();
     const filteredPosts = useSelector(state => state.filteredPosts);
@@ -21,8 +19,6 @@ function PostList({ posts,
             <li key={post.id} className='wrapper'>
                <PostListItem 
                     post={post}
-                    handleRemove={handleRemove}
-                    openEditModal={openEditModal}
                     />
                     
             </li>
