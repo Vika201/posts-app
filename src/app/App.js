@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 import { setPostsAction, setFilteredPostsAction, setFilterTextAction, deletePostAction, createPostAction, openEditModalAction } from '../store';
+import FilteringPosts from '../filteringPosts/filteringPosts';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,11 +56,8 @@ const searchingText = (e) => {
 
   return (
     <div className='app'>
-     <PostAdder create={createPost}/>
-     <input type='text'
-            placeholder='Search'
-            value={filterText}
-            onChange={searchingText}/>
+      <PostAdder create={createPost}/>
+      <FilteringPosts />
 
       {(editingPost !== null) && <EditModal 
                   openEditModal={openEditModal} /> 

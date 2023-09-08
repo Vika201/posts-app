@@ -1,9 +1,18 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PostListItem from '../postListItem/postListItem';
+import { setFilterTextAction } from '../store';
 // import '.filteringPosts.css';
 
-function FilteringPosts({ filteredPosts, handleRemove }) {
-    const [filterText, setFilterText] = useState('');
+function FilteringPosts() {
+    const dispatch = useDispatch();
+    const filterText = useSelector(state => state.filterText);
+    // const [filterText, setFilterText] = useState('');
+
+    const searchingtext = (e) => {
+        dispatch(setFilterTextAction(e.target.value));
+    }
 
     return (
         <div>
@@ -11,15 +20,7 @@ function FilteringPosts({ filteredPosts, handleRemove }) {
                 type='text'
                 placeholder='Searching posts'
                 value={filterText}
-                onChange={e => setFilterText(e.target.value)}/>
-            <ul>
-                {filteredPosts.map(post => (
-                    <li key={post.id}>
-                        <PostListItem post={post}
-                                    handleRemove={handleRemove}/>
-                    </li>
-                ))}
-            </ul>
+                onChange={searchingtext}/>
         </div>
     )
 }
