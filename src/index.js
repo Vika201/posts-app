@@ -5,7 +5,11 @@ import './index.css';
 import App from './app/App';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import PostsService from './services/postsService';
 
+const postsService = new PostsService;
+
+postsService.getAllPosts().then(res => console.log(res));
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

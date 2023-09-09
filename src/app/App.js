@@ -10,8 +10,11 @@ import { useSelector } from 'react-redux';
 
 import { setPostsAction, setFilteredPostsAction, setFilterTextAction, deletePostAction, createPostAction, openEditModalAction } from '../store';
 import FilteringPosts from '../filteringPosts/filteringPosts';
+import PostsService from '../services/postsService';
 
 function App() {
+  const postsService = new PostsService();
+
   const dispatch = useDispatch();
 
   const posts = useSelector(state => state.posts);
@@ -20,26 +23,9 @@ function App() {
   const editingPost = useSelector(state => state.editingPost);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(data => {
-          
-          dispatch(setPostsAction(data));
-          // dispatch(setFilteredPostsAction(data));
-        }
-        
-          )
-      .catch(error => console.error('Error fetch data:', error))
+    postsService.getAllPosts()
+    .then(data => dispatch(setPostsAction(data)));
   }, []);
-
-
-  
-
-  
-
-// edit posts
-     
-
 
   return (
     <div className='app'>

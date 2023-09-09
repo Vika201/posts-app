@@ -1,5 +1,6 @@
 import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { setFilteredPosts } from '../store/utils'
 
 const defaultState = {
     posts: [],
@@ -20,9 +21,6 @@ const OPEN_EDIT_MODAL = '[Admin] Open Edit Modal';
 const SAVE_EDITED_TITLE_IN_POST = '[Admin] Save Edited Title in Post';
 const SAVE_EDITED_BODY_IN_POST = '[Admin] Save Edited Body in Post';
 // const SAVE_EDITED_POST = '[Admin] Save Edited Post';
-// видалення
-// створення
-// 
 
 
 const reducer = (state = defaultState, action) => {
@@ -34,7 +32,9 @@ const reducer = (state = defaultState, action) => {
         case SET_FILTERED_POSTS:
             return {...state, filteredPosts: action.payload};
         case SET_FILTER_TEXT:
-            return {...state, filterText: action.payload};
+            return {...state, filterText: action.payload,
+                // filteredPosts: setFilteredPosts(state.posts, action.payload)
+            };
         case SET_EDITING_POST: {
             return {...state, editingPost: action.payload}
         }
