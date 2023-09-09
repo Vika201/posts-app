@@ -6,13 +6,12 @@ import {setFilteredPostsAction} from '../store';
 
 import './PostList.css';
 
-function PostList({ posts,
-                    // filteredPosts, 
-                    // setFilteredPosts, 
-                    filterText }) {
+function PostList() {
 
     const dispatch = useDispatch();
+    const posts = useSelector(state => state.posts);
     const filteredPosts = useSelector(state => state.filteredPosts);
+    const filterText = useSelector(state => state.filterText);
 
     const postList = (arr) => {
         return arr.map(post => (

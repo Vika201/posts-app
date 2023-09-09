@@ -1,0 +1,10 @@
+.filtering-posts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.filtering-posts input {
+    width: 80%;
+}
