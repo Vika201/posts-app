@@ -7,20 +7,17 @@ import EditModal from '../editModal/editModal';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import { setPostsAction } from '../store';
 import FilteringPosts from '../filteringPosts/filteringPosts';
-import PostsService from '../services/postsService';
+import { fetchPosts } from '../store/asyncActions/posts';
 
 function App() {
-  const postsService = new PostsService();
 
   const dispatch = useDispatch();
 
   const editingPost = useSelector(state => state.editingPost);
 
   useEffect(() => {
-    postsService.getAllPosts()
-    .then(data => dispatch(setPostsAction(data)));
+    dispatch(fetchPosts());
   }, []);
 
   return (

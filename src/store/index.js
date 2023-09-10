@@ -1,6 +1,8 @@
+import { applyMiddleware } from "redux";
 import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { setFilteredPosts } from '../store/utils'
+// import { setFilteredPosts } from '../store/utils';
+import thunk from 'redux-thunk';
 
 const defaultState = {
     posts: [],
@@ -9,6 +11,7 @@ const defaultState = {
     editingPost: null
 }
 
+const ADD_ALL_POSTS = 'Add All Posts';
 const SET_POSTS = '[Admin] Set Posts';
 const SET_FILTERED_POSTS = '[Admin] Set Filtered Posts';
 const SET_FILTER_TEXT = '[Admin] Set Filter Text';
@@ -20,30 +23,40 @@ const OPEN_EDIT_MODAL = '[Admin] Open Edit Modal';
 
 const SAVE_EDITED_TITLE_IN_POST = '[Admin] Save Edited Title in Post';
 const SAVE_EDITED_BODY_IN_POST = '[Admin] Save Edited Body in Post';
-// const SAVE_EDITED_POST = '[Admin] Save Edited Post';
 
 
 const reducer = (state = defaultState, action) => {
     switch (action.type) {
+        case ADD_ALL_POSTS: {
+            return {
+                ...state,
+                posts: action.payload
+            }
+        }
         case SET_POSTS:
-            return {...state, posts: action.payload,
+            return {
+                ...state, 
+                posts: action.payload,
                 // filteredPosts: setFilteredPosts(action.payload, state.filterText)
             };
         case SET_FILTERED_POSTS:
-            return {...state, filteredPosts: action.payload};
+            return {
+                ...state, 
+                filteredPosts: action.payload};
         case SET_FILTER_TEXT:
             return {...state, filterText: action.payload,
                 // filteredPosts: setFilteredPosts(state.posts, action.payload)
             };
         case SET_EDITING_POST: {
-            return {...state, editingPost: action.payload}
+            return {
+                ...state, 
+                editingPost: action.payload}
         }
         case REMOVE_POST: {
             const updatePosts = state.posts.filter(post => post.id !== action.payload);
             return {
                 ...state,
                 posts: updatePosts
-                // filteredPosts: updatePosts
             }
         }
         case CREATE_POST: {
@@ -95,7 +108,7 @@ const reducer = (state = defaultState, action) => {
             return state;
     }
 }
-
+export const addAllPostsAction = (payload) => ({type: ADD_ALL_POSTS, payload})
 //set state
 export const setPostsAction = (payload) => ({type: SET_POSTS, payload});
 export const setFilteredPostsAction = (payload) => ({type: SET_FILTERED_POSTS, payload}); 
@@ -109,5 +122,5 @@ export const openEditModalAction = (payload) => ({type: OPEN_EDIT_MODAL, payload
 export const saveEditedTitleInPostAction = (id, title) => ({type: SAVE_EDITED_TITLE_IN_POST, payload: {id, title}});
 export const saveEditedBodyInPostAction = (id, body) => ({type: SAVE_EDITED_BODY_IN_POST, payload: {id, body}});
 
-export const store = createStore(reducer, composeWithDevTools());
+export const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
