@@ -8,7 +8,8 @@ const defaultState = {
     posts: [],
     filteredPosts: [],
     filterText: '',
-    editingPost: null
+    editingPost: null,
+    loading: true
 }
 
 const ADD_ALL_POSTS = 'Add All Posts';
@@ -30,13 +31,15 @@ const reducer = (state = defaultState, action) => {
         case ADD_ALL_POSTS: {
             return {
                 ...state,
-                posts: action.payload
+                posts: action.payload,
+                loading: false
             }
         }
         case SET_POSTS:
             return {
                 ...state, 
                 posts: action.payload,
+                loading: false
                 // filteredPosts: setFilteredPosts(action.payload, state.filterText)
             };
         case SET_FILTERED_POSTS:

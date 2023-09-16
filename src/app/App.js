@@ -9,16 +9,21 @@ import { useSelector } from 'react-redux';
 
 import FilteringPosts from '../filteringPosts/filteringPosts';
 import { fetchPosts } from '../store/asyncActions/posts';
+import Loader from '../loader/Loader';
 
 function App() {
 
   const dispatch = useDispatch();
 
   const editingPost = useSelector(state => state.editingPost);
+  const loading = useSelector(state => state.loading);
 
   useEffect(() => {
     dispatch(fetchPosts());
   }, []);
+
+  const loader = loading ? <Loader /> 
+                         : <PostList />
 
   return (
     <div className='app'>
@@ -27,7 +32,7 @@ function App() {
 
       {(editingPost !== null) && <EditModal />}
       
-      <PostList />
+      {loader}
     </div> 
   );
 }

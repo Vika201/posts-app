@@ -17,7 +17,8 @@ function FilteringPosts() {
                 type='text'
                 placeholder='Searching posts'
                 value={filterText}
-                onChange={searchingText}/>
+                onChange={searchingText}
+                name='seatchingPosts' />
         </div>
     )
 }

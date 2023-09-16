@@ -37,12 +37,14 @@ function PostAdder() {
                     value={post.title}
                     type='text'
                     placeholder='Create a title for your post'
-                    onChange={(e) => setPost({...post, title: e.target.value})}/>
+                    onChange={(e) => setPost({...post, title: e.target.value})}
+                    name='posteTitle' />
             <input  className='post-adder-body'
                     value={post.body}
                     type='text'
                     placeholder='Create text for your post'
-                    onChange={(e) => setPost({...post, body: e.target.value})}/>
+                    onChange={(e) => setPost({...post, body: e.target.value})}
+                    name='posteBody' />
             <button onClick={addNewPost}>Add Post</button>
         </div>
     </form>
