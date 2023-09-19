@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux';
 import FilteringPosts from '../filteringPosts/filteringPosts';
 import { fetchPosts } from '../store/asyncActions/posts';
 import Loader from '../loader/Loader';
+import { Route, Routes } from 'react-router-dom';
+import Navbar from '../navbar/Navbar';
 
 function App() {
 
@@ -25,15 +27,27 @@ function App() {
   const loader = loading ? <Loader /> 
                          : <PostList />
 
-  return (
-    <div className='app'>
-      <PostAdder/>
-      <FilteringPosts />
+  const posts = (editingPost !== null) && <EditModal />
+  
 
-      {(editingPost !== null) && <EditModal />}
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<PostList />} />
+        <Route path='/create' element={<PostAdder />} />
+      </Routes>
+      {posts}
+    </div>
+    
+    // <div className='app'>
+    //   <PostAdder/>
+    //   <FilteringPosts />
+
+      // {(editingPost !== null) && <EditModal />}
       
-      {loader}
-    </div> 
+    //   {loader}
+    // </div> 
   );
 }
 

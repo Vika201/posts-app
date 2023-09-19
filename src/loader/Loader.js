@@ -1,7 +1,7 @@
-function Loader() {
+function Spinner() {
     return (
         <div>Loading...</div>
     )
 }
 
-export default Loader;
+export default Spinner;

@@ -45,9 +45,13 @@ function EditModal() {
                     <div className='modal-content'>
                         <span className='close' 
                                 onClick={handleCancel}>&times;</span>
-                        <input value={editTitle}
+                        <input 
+                                name='change_title'
+                                value={editTitle}
                                 onChange={handleEditTitle} />
-                        <input value={editBody}
+                        <input 
+                                name='change_body'
+                                value={editBody}
                                 onChange={handleEditBody} />
                         <button onClick={handleSubmit}>Save</button>
                     </div>
