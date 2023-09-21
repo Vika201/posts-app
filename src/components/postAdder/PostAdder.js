@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createPostAction } from '../store';
+import { createPostAction } from '../../store';
 
 import './PostAdder.css';
 

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setFilterTextAction } from '../store';
-import './filteringPosts.css';
+import { setFilterTextAction } from '../../store';
+import './FilteringPosts.css';
 
 function FilteringPosts() {
     const dispatch = useDispatch();

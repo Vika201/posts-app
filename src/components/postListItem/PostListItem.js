@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
-import deleteItem from '../img/delete2.png';
-import { deletePostAction, openEditModalAction } from '../store';
+import deleteItem from '../../img/delete2.png';
+import { deletePostAction, openEditModalAction } from '../../store';
 
-import './postListItem.css';
+import './PostListItem.css';
 
 function PostListItem({ post }) {
 

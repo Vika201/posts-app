@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 
 import './App.css';
 import PostList from '../postList/PostList';
-import PostAdder from '../postAdder';
-import EditModal from '../editModal/editModal';
+import PostAdder from '../postAdder/PostAdder';
+import EditModal from '../editModal/EditModal';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import FilteringPosts from '../filteringPosts/filteringPosts';
-import { fetchPosts } from '../store/asyncActions/posts';
+import FilteringPosts from '../filteringPosts/FilteringPosts';
+import { fetchPosts } from '../../store/asyncActions/posts';
 import Loader from '../loader/Loader';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
