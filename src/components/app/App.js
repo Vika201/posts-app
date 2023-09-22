@@ -12,6 +12,8 @@ import { fetchPosts } from '../../store/asyncActions/posts';
 import Loader from '../loader/Loader';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
+import MyModal from '../editModal/EditModalTest';
+import EditModal2 from '../editModal/EditModalTest';
 
 
 function App() {
@@ -32,7 +34,11 @@ function App() {
   
 
   return (
-   
+    <>
+    <EditModal2 />
+    <PostList />
+    <FilteringPosts />
+   </>
     // <div>
     //   <Navbar />
     //   <Routes>
@@ -42,14 +48,14 @@ function App() {
     //   {posts}
     // </div>
     
-    <div className='app'>
-      <PostAdder/>
-      <FilteringPosts />
+    // <div className='app'>
+    //   <PostAdder/>
+    //   <FilteringPosts />
 
-      {(editingPost !== null) && <EditModal />}
+    //   {(editingPost !== null) && <EditModal />}
       
-      {loader}
-    </div> 
+    //   {loader}
+    // </div> 
   );
 }
 
