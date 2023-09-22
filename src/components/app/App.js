@@ -13,6 +13,7 @@ import Loader from '../loader/Loader';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
 
+
 function App() {
 
   const dispatch = useDispatch();
@@ -31,23 +32,24 @@ function App() {
   
 
   return (
-    <div>
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<PostList />} />
-        <Route path='/create' element={<PostAdder />} />
-      </Routes>
-      {posts}
-    </div>
+ 
+    // <div>
+    //   <Navbar />
+    //   <Routes>
+    //     <Route path='/' element={<PostList />} />
+    //     <Route path='/create' element={<PostAdder />} />
+    //   </Routes>
+    //   {posts}
+    // </div>
     
-    // <div className='app'>
-    //   <PostAdder/>
-    //   <FilteringPosts />
+    <div className='app'>
+      <PostAdder/>
+      <FilteringPosts />
 
-      // {(editingPost !== null) && <EditModal />}
+      {(editingPost !== null) && <EditModal />}
       
-    //   {loader}
-    // </div> 
+      {loader}
+    </div> 
   );
 }
 
