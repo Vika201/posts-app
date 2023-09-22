@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import PostListItemTest from '../postListItem/PostListItemTest';
+import PostListItem from '../postListItem/PostListItem';
 import {setFilteredPostsAction} from '../../store';
 
 import './PostList.css';
@@ -17,14 +17,9 @@ function PostList() {
     const postList = (arr) => {
         return arr.map(post => (
             <ListItem key={post.id} alignItems='center'>
-                <PostListItemTest post={post} />
+                <PostListItem post={post} />
             </ListItem>
-            // <li key={post.id} className='wrapper'>
-            //    <PostListItemTest 
-            //         post={post}
-            //         />
-                    
-            // </li>
+          
             
         ))}
 
@@ -44,11 +39,6 @@ function PostList() {
                             postList(filteredPosts)
                         }
                 </List>
-                {/* <ul className='post-list'>
-                    {
-                        postList(filteredPosts)
-                    }
-                </ul> */}
             </div>
         </div>  
     )
