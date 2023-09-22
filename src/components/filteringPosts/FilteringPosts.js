@@ -1,6 +1,9 @@
+import { TextField } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setFilterTextAction } from '../../store';
+
+import SearchIcon from '@mui/icons-material/Search'
 import './FilteringPosts.css';
 
 function FilteringPosts() {
@@ -12,14 +15,20 @@ function FilteringPosts() {
     }
 
     return (
-        <div className='filtering-posts'>
-            <input 
-                type='text'
-                placeholder='Searching posts'
-                value={filterText}
-                onChange={searchingText}
-                name='seatchingPosts' />
-        </div>
+        <TextField 
+            sx={{width: '80%', maxWidth: 800, margin: '0 auto'}}
+            placeholder='Search'
+            variant='outlined'
+            size='small'
+            fullWidth
+            value={filterText}
+            onChange={searchingText}
+            InputProps={{
+                endAdornment: (
+                    <SearchIcon />
+                )
+            }}/>
+      
     )
 }
 
