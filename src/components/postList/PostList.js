@@ -6,6 +6,7 @@ import {setFilteredPostsAction} from '../../store';
 
 import './PostList.css';
 import { List, ListItem } from '@mui/material';
+import PostAdderModal from '../postAdder/PostAdderModal';
 
 function PostList() {
 
@@ -32,7 +33,7 @@ function PostList() {
 
     return (
         <div>
-            <h1>All posts</h1>
+            <PostAdderModal />
             <div className='post-list-wrapper'>
                 <List sx={{ width: '100%', maxWidth: 1000 , bgcolor: 'background.paper' }}>
                     {

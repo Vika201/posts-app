@@ -10,5 +10,8 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
-  width: 100%;
+}
+
+h1 {
+  text-align: center;
 }

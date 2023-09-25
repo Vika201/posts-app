@@ -22,7 +22,7 @@ function PostListItem({ post }) {
 
   return (
       <div>
-        <Card sx={{ maxWidth: '80%', margin: '0 auto'}} >
+        <Card sx={{ maxWidth: '80%', width: 900, margin: '0 auto'}} >
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                 {post.title}

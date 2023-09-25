@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 import './App.css';
 import PostList from '../postList/PostList';
-import PostAdder from '../postAdder/PostAdder';
 import EditModal from '../editModal/EditModal';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -12,8 +11,8 @@ import { fetchPosts } from '../../store/asyncActions/posts';
 import Loader from '../loader/Loader';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
-import MyModal from '../editModal/EditModalTest';
-import EditModal2 from '../editModal/EditModalTest';
+import MyModal from '../postAdder/PostAdderModal';
+import EditModal2 from '../postAdder/PostAdderModal';
 
 
 function App() {
@@ -35,9 +34,10 @@ function App() {
 
   return (
     <>
-    <EditModal2 />
+    <h1>All Posts</h1>
+    {/* <FilteringPosts /> */}
     <PostList />
-    <FilteringPosts />
+    
    </>
     // <div>
     //   <Navbar />

@@ -1,0 +1,6 @@
+.btn-add-post {
+    margin-right: 600px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
