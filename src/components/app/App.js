@@ -37,7 +37,7 @@ function App() {
     <h1>All Posts</h1>
     {/* <FilteringPosts /> */}
     <PostList />
-    
+    {posts}
    </>
     // <div>
     //   <Navbar />
